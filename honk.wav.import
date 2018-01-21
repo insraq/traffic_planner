@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/honk.wav-68f02d5e11e32b028634521f1ab196bf.sample"
+
+[deps]
+
+source_file="res://honk.wav"
+source_md5="c99aebb2798bb3cb2e99df0a14813e7e"
+
+dest_files=[ "res://.import/honk.wav-68f02d5e11e32b028634521f1ab196bf.sample" ]
+dest_md5="279c288c83aca2bebe2611c2a2f3f18b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

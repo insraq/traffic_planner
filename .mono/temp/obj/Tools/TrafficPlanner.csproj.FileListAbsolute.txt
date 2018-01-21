@@ -1,0 +1,6 @@
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/obj/Tools/TrafficPlanner.csprojResolveAssemblyReference.cache
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/obj/Tools/TrafficPlanner.csproj.CoreCompileInputs.cache
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/bin/Tools/TrafficPlanner.dll
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/bin/Tools/TrafficPlanner.pdb
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/obj/Tools/TrafficPlanner.dll
+/Users/Ruoyu/Projects/traffic_planner/.mono/temp/obj/Tools/TrafficPlanner.pdb
