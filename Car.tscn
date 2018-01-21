@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 6, 10 )
 
-[node name="Car" type="Area2D" index="0"]
+[node name="Car" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -40,5 +40,7 @@ bus = "Master"
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 
 [connection signal="area_exited" from="." to="." method="OnAreaExited"]
+
+[connection signal="finished" from="Honk" to="." method="OnHonkFinished"]
 
 

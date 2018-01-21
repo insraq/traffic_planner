@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Crossroad.cs" type="Script" id=3]
 [ext_resource path="res://road_x.png" type="Texture" id=4]
-[ext_resource path="res://PxPlus_IBM_VGA8.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://ScoreManager.cs" type="Script" id=5]
+[ext_resource path="res://PxPlus_IBM_VGA8.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,7 +17,7 @@ extents = Vector2( 20, 20 )
 size = 14
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 5 )
+font_data = ExtResource( 6 )
 _sections_unfolded = [ "Settings" ]
 
 [node name="game" type="Node" index="0"]
@@ -82,16 +83,20 @@ texture = ExtResource( 4 )
 
 shape = SubResource( 1 )
 
-[node name="HP" type="Label" parent="." index="6"]
+[node name="ScoreManager" type="Node2D" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 16, 16 )
+script = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="ScoreManager" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 304.0
-margin_bottom = 48.0
+margin_right = 288.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0

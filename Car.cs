@@ -125,17 +125,35 @@ public class Car : Area2D
         // Out of canvas, free
         if (!GetViewportRect().HasPoint(GetPosition()))
         {
+            var player = (AudioStreamPlayer)GetNode("Honk");
+            if (player.IsPlaying())
+            {
+                getScoreManager().PlaySoundEnd();
+            }
             QueueFree();
         }
     }
 
     public void Stop()
     {
-        if (rand.Next(1, 4) == 1)
+        var player = (AudioStreamPlayer)GetNode("Honk");
+        var scoreManager = getScoreManager();
+        if (rand.Next(1, 2) == 1 && !player.IsPlaying() && scoreManager.ShouldPlaySound())
         {
-            ((AudioStreamPlayer)GetNode("Honk")).Play();
+            scoreManager.PlaySoundStart();
+            player.Play();
         }
         speed = 0;
+    }
+
+    private void OnHonkFinished()
+    {
+        getScoreManager().PlaySoundEnd();
+    }
+
+    private ScoreManager getScoreManager()
+    {
+        return (ScoreManager)GetNode("/root/game/ScoreManager");
     }
 
     public void Start()
@@ -143,3 +161,5 @@ public class Car : Area2D
         speed = SPEED / ACCE;
     }
 }
+
+

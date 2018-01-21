@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CarSpawn.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ScoreManager.cs">
     <Files>
-      <File FileName="CarSpawn.cs" Line="14" Column="5" />
-      <File FileName="Car.cs" Line="23" Column="25" />
-      <File FileName="Crossroad.cs" Line="1" Column="1" />
+      <File FileName="CarSpawn.cs" Line="31" Column="39" />
+      <File FileName="Car.cs" Line="152" Column="1" />
+      <File FileName="Crossroad.cs" Line="24" Column="6" />
+      <File FileName="ScoreManager.cs" Line="41" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

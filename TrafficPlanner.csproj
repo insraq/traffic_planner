@@ -53,6 +53,7 @@
     <Compile Include="CarSpawn.cs" />
     <Compile Include="Crossroad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
