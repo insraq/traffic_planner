@@ -3,13 +3,13 @@ using System;
 
 public class ScoreManager : Node2D
 {
-    private const int MAX_CONCURRENT_SOUND = 5;
+    private const int MAX_CONCURRENT_SOUND = 2;
     private int concurrentSound = 0;
 
     public void PlaySoundStart()
     {
         concurrentSound++;
-        GD.Print("PlaySoundStart(); concurrentSound = ", concurrentSound);
+        // GD.Print("PlaySoundStart(); concurrentSound = ", concurrentSound);
     }
 
     public void PlaySoundEnd()
@@ -19,7 +19,7 @@ public class ScoreManager : Node2D
             GD.Print("WARNING: PlaySoundEnd() called when concurrentSound <= 0");
         }
         concurrentSound--;
-        GD.Print("PlaySoundEnd(); concurrentSound = ", concurrentSound);
+        // GD.Print("PlaySoundEnd(); concurrentSound = ", concurrentSound);
     }
 
     public Boolean ShouldPlaySound()
