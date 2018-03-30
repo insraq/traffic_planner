@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Car.cs" type="Script" id=1]
-[ext_resource path="res://car.png" type="Texture" id=2]
-[ext_resource path="res://honk.wav" type="AudioStream" id=3]
+[ext_resource path="res://images/car.png" type="Texture" id=2]
+[ext_resource path="res://sounds/honk.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,7 +19,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-direction = 0
+Direction = 0
 
 [node name="image" type="Sprite" parent="." index="0"]
 

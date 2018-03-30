@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/road_x_hori.png-707064c22bd73c59b933eae6544e3780.stex"
+path="res://.import/road_v.png-f90d01a6f940adb8e232e30dcda80b6a.stex"
 
 [deps]
 
-source_file="res://road_x_hori.png"
-source_md5="f6753b065358e6a9d560a4d061065668"
+source_file="res://images/road_v.png"
+source_md5="4b02c2f6772b6c56af9c7f398a4ff202"
 
-dest_files=[ "res://.import/road_x_hori.png-707064c22bd73c59b933eae6544e3780.stex" ]
-dest_md5="58880a7b22832d952f9fdc4bf7306e46"
+dest_files=[ "res://.import/road_v.png-f90d01a6f940adb8e232e30dcda80b6a.stex" ]
+dest_md5="4443a5d3904eebe9ec616d3108b47808"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

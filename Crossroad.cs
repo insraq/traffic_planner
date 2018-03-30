@@ -5,14 +5,18 @@ public class Crossroad : Area2D
 {
     public enum Mode { Horizontal, Vertical, None };
 
-    [Export]
-    private Mode _mode = Mode.None;
+    [Export] private Mode _mode = Mode.None;
+    [Export] private Texture horizontal;
+    [Export] private Texture vertical;
+    [Export] private Texture none;
+
+    [Node("./Image")] private Sprite image;
+
 
     public override void _Ready()
     {
+        this.WireNodes();
         SetMode(Mode.Horizontal);
-        // Called every time the node is added to the scene.
-        // Initialization here
     }
 
     public Mode GetMode()
@@ -22,30 +26,28 @@ public class Crossroad : Area2D
 
     public void SetMode(Mode mode)
     {
-        var image = ((Sprite)GetNode("Image"));
-
         _mode = mode;
         switch (_mode)
         {
             case Mode.Horizontal:
-                image.SetTexture((Texture)ResourceLoader.Load("road_x_hori.png"));
+                image.SetTexture(horizontal);
                 StarCars();
                 return;
             case Mode.Vertical:
-                image.SetTexture((Texture)ResourceLoader.Load("road_x_vert.png"));
+                image.SetTexture(vertical);
                 StarCars();
                 return;
             default:
-                image.SetTexture((Texture)ResourceLoader.Load("road_x.png"));
+                image.SetTexture(none);
                 return;
         }
 
     }
 
-    public Boolean CanPass(Car.Direction direction)
+    public Boolean CanPass(Car.CarDirection direction)
     {
-        return GetMode() == Mode.Vertical && (direction == Car.Direction.Up || direction == Car.Direction.Down) ||
-            GetMode() == Mode.Horizontal && (direction == Car.Direction.Left || direction == Car.Direction.Right);
+        return GetMode() == Mode.Vertical && (direction == Car.CarDirection.Up || direction == Car.CarDirection.Down) ||
+            GetMode() == Mode.Horizontal && (direction == Car.CarDirection.Left || direction == Car.CarDirection.Right);
     }
 
     private void StarCars()

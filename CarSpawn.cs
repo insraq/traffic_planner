@@ -3,16 +3,16 @@ using System;
 
 public class CarSpawn : Area2D
 {
-    [Export]
-    private Car.Direction direction;
-    private PackedScene carScene;
-    private Random random;
+    [Export] private Car.CarDirection direction;
+    [Export] private readonly PackedScene carScene;
+    [Export] private readonly NodePath spawnTargetNode;
+
+    private readonly Random random = new Random();
+    private Node spawnTarget;
 
     public override void _Ready()
     {
-        // Hide the placeholder
-        carScene = (PackedScene)ResourceLoader.Load("res://Car.tscn");
-        random = new Random();
+        spawnTarget = GetNode(spawnTargetNode);
     }
 
     public override void _Process(float delta)
@@ -40,6 +40,6 @@ public class CarSpawn : Area2D
         var newCar = (Car)carScene.Instance();
         newCar.SetDirection(direction);
         newCar.SetGlobalPosition(GetGlobalPosition());
-        GetNode("/root/game").AddChild(newCar);
+        spawnTarget.AddChild(newCar);
     }
 }

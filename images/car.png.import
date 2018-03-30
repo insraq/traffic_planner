@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/road_x_vert.png-a38bc136e28d43aa21f3835236955306.stex"
+path="res://.import/car.png-f22288f4c67abb31a266a0fe146917ab.stex"
 
 [deps]
 
-source_file="res://road_x_vert.png"
-source_md5="bff4b3692404c3934012d15b477b243a"
+source_file="res://images/car.png"
+source_md5="2a8fd5f7e3d7e5d8d68a6d98558a0e6d"
 
-dest_files=[ "res://.import/road_x_vert.png-a38bc136e28d43aa21f3835236955306.stex" ]
-dest_md5="3042875e3c05d1cd81e137918311c144"
+dest_files=[ "res://.import/car.png-f22288f4c67abb31a266a0fe146917ab.stex" ]
+dest_md5="7aecb399da82192b392e612aa3aa1b9e"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

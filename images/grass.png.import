@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/car.png-021a5d1fff5494b94b6d2dc9f132616d.stex"
+path="res://.import/grass.png-e7f2e70f93a662a3b1efd9b08f855f48.stex"
 
 [deps]
 
-source_file="res://car.png"
-source_md5="2a8fd5f7e3d7e5d8d68a6d98558a0e6d"
+source_file="res://images/grass.png"
+source_md5="f09cc9092d95e479fbdceb856d9e5a25"
 
-dest_files=[ "res://.import/car.png-021a5d1fff5494b94b6d2dc9f132616d.stex" ]
-dest_md5="7aecb399da82192b392e612aa3aa1b9e"
+dest_files=[ "res://.import/grass.png-e7f2e70f93a662a3b1efd9b08f855f48.stex" ]
+dest_md5="2477dfaa5e6e6d2d3dca817f33ef8abb"
 
 [params]
 

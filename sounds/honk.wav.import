@@ -2,14 +2,14 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/honk.wav-68f02d5e11e32b028634521f1ab196bf.sample"
+path="res://.import/honk.wav-281fa591fb19e89681d16c3c3a19344a.sample"
 
 [deps]
 
-source_file="res://honk.wav"
+source_file="res://sounds/honk.wav"
 source_md5="c99aebb2798bb3cb2e99df0a14813e7e"
 
-dest_files=[ "res://.import/honk.wav-68f02d5e11e32b028634521f1ab196bf.sample" ]
+dest_files=[ "res://.import/honk.wav-281fa591fb19e89681d16c3c3a19344a.sample" ]
 dest_md5="279c288c83aca2bebe2611c2a2f3f18b"
 
 [params]

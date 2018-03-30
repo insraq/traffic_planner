@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/road_v.png-28573132f718790a465ae45a7c87b552.stex"
+path="res://.import/road.png-8adfb4c99cf11562a46f2fff5129c1f4.stex"
 
 [deps]
 
-source_file="res://road_v.png"
-source_md5="4b02c2f6772b6c56af9c7f398a4ff202"
+source_file="res://images/road.png"
+source_md5="890eaa9b1756daf7a0f1ac0cf46b9f6f"
 
-dest_files=[ "res://.import/road_v.png-28573132f718790a465ae45a7c87b552.stex" ]
-dest_md5="4443a5d3904eebe9ec616d3108b47808"
+dest_files=[ "res://.import/road.png-8adfb4c99cf11562a46f2fff5129c1f4.stex" ]
+dest_md5="ebac1415f22196057539f67da9f6bfc9"
 
 [params]
 

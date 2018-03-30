@@ -14,6 +14,10 @@ config/name="TrafficPlanner"
 run/main_scene="res://Level1.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ScoreManager="*res://ScoreManager.cs"
+
 [display]
 
 window/size/width=512

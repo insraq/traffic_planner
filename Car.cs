@@ -2,50 +2,56 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class Car : Area2D
+public partial class Car : Area2D
 {
-    public enum Direction { Up, Down, Left, Right };
-    private const int SPEED = 150;
+    [Export] public CarDirection Direction { get; set; } = CarDirection.Up;
+    [Node("/root/ScoreManager")] private ScoreManager scoreManager;
+    [Node("./Honk")] private AudioStreamPlayer audioPlayer;
+
+    private const int ACCE = 10;
+    private const int MAX_SPEED = 150;
     private const int HEIGHT = 7;
     private const int WIDTH = 5;
-    private const int ACCE = 10;
-    private int speed = SPEED / ACCE;
+    private int speed;
     private Random rand = new Random();
-    public HashSet<Area2D> overlap;
-
-    [Export]
-    private Direction direction = Direction.Up;
+    public HashSet<Area2D> overlap = new HashSet<Area2D>();
 
     public int GetSpeed()
     {
         return speed;
     }
 
-    public void SetDirection(Direction dir)
+    public void SetDirection(CarDirection dir)
     {
-        direction = dir;
+        Direction = dir;
     }
 
-    public Direction GetDirection()
+    public CarDirection GetDirection()
     {
-        return direction;
+        return Direction;
     }
 
     public override void _Ready()
     {
-        if (direction == Direction.Down)
+        this.WireNodes();
+        SetInitialRotate();
+        speed = MAX_SPEED / ACCE;
+    }
+
+    private void SetInitialRotate()
+    {
+        if (Direction == CarDirection.Down)
         {
             Rotate(Mathf.Deg2Rad(180));
         }
-        if (direction == Direction.Left)
+        if (Direction == CarDirection.Left)
         {
             Rotate(Mathf.Deg2Rad(270));
         }
-        if (direction == Direction.Right)
+        if (Direction == CarDirection.Right)
         {
             Rotate(Mathf.Deg2Rad(90));
         }
-        overlap = new HashSet<Area2D>();
     }
 
     private void OnAreaEntered(Area2D area)
@@ -55,10 +61,10 @@ public class Car : Area2D
             var myPos = GetHeadPosition();
             var theirPos = car.GetHeadPosition();
             if (
-                (direction == Direction.Up && myPos.y - HEIGHT < theirPos.y + WIDTH) ||
-                (direction == Direction.Down && myPos.y + HEIGHT > theirPos.y - WIDTH) ||
-                (direction == Direction.Left && myPos.x - HEIGHT < theirPos.x + WIDTH) ||
-                (direction == Direction.Right && myPos.x + HEIGHT > theirPos.x - WIDTH) ||
+                (Direction == CarDirection.Up && myPos.y - HEIGHT < theirPos.y + WIDTH) ||
+                (Direction == CarDirection.Down && myPos.y + HEIGHT > theirPos.y - WIDTH) ||
+                (Direction == CarDirection.Left && myPos.x - HEIGHT < theirPos.x + WIDTH) ||
+                (Direction == CarDirection.Right && myPos.x + HEIGHT > theirPos.x - WIDTH) ||
                 car.overlap.Contains(this))
             {
                 return;
@@ -69,7 +75,7 @@ public class Car : Area2D
 
         if (area is Crossroad cr)
         {
-            if (cr.CanPass(direction))
+            if (cr.CanPass(Direction))
             {
                 return;
             }
@@ -79,7 +85,7 @@ public class Car : Area2D
 
     public Vector2 GetHeadPosition()
     {
-        var myPos = GetPosition();
+        var myPos = GetGlobalPosition();
         return new Vector2(myPos.x, myPos.y - HEIGHT);
     }
 
@@ -94,41 +100,40 @@ public class Car : Area2D
 
     public override void _PhysicsProcess(float delta)
     {
-        if (speed > 0 && speed < SPEED)
+        if (speed > 0 && speed < MAX_SPEED)
         {
-            speed += SPEED / ACCE;
+            speed += MAX_SPEED / ACCE;
         }
 
-        if (direction == Direction.Up)
+        if (Direction == CarDirection.Up)
         {
-            Position += new Vector2(0, -speed * delta);
+            GlobalPosition += new Vector2(0, -speed * delta);
         }
 
-        if (direction == Direction.Down)
+        if (Direction == CarDirection.Down)
         {
-            Position += new Vector2(0, speed * delta);
+            GlobalPosition += new Vector2(0, speed * delta);
         }
 
-        if (direction == Direction.Left)
+        if (Direction == CarDirection.Left)
         {
-            Position += new Vector2(-speed * delta, 0);
+            GlobalPosition += new Vector2(-speed * delta, 0);
         }
 
-        if (direction == Direction.Right)
+        if (Direction == CarDirection.Right)
         {
-            Position += new Vector2(speed * delta, 0);
+            GlobalPosition += new Vector2(speed * delta, 0);
         }
     }
 
     public override void _Process(float delta)
     {
         // Out of canvas, free
-        if (!GetViewportRect().HasPoint(GetPosition()))
+        if (!GetViewportRect().HasPoint(GetGlobalPosition()))
         {
-            var player = (AudioStreamPlayer)GetNode("Honk");
-            if (player.IsPlaying())
+            if (audioPlayer.IsPlaying())
             {
-                getScoreManager().PlaySoundEnd();
+                scoreManager.PlaySoundEnd();
             }
             QueueFree();
         }
@@ -136,29 +141,22 @@ public class Car : Area2D
 
     public void Stop()
     {
-        var player = (AudioStreamPlayer)GetNode("Honk");
-        var scoreManager = getScoreManager();
-        if (rand.Next(1, 2) == 1 && !player.IsPlaying() && scoreManager.ShouldPlaySound())
+        if (rand.Next(1, 2) == 1 && !audioPlayer.IsPlaying() && scoreManager.ShouldPlaySound())
         {
             scoreManager.PlaySoundStart();
-            player.Play();
+            audioPlayer.Play();
         }
         speed = 0;
     }
 
     private void OnHonkFinished()
     {
-        getScoreManager().PlaySoundEnd();
-    }
-
-    private ScoreManager getScoreManager()
-    {
-        return (ScoreManager)GetNode("/root/game/ScoreManager");
+        scoreManager.PlaySoundEnd();
     }
 
     public void Start()
     {
-        speed = SPEED / ACCE;
+        speed = MAX_SPEED / ACCE;
     }
 }
 
