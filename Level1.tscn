@@ -1,16 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
-[ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Crossroad.cs" type="Script" id=3]
-[ext_resource path="res://images/road_x_hori.png" type="Texture" id=4]
-[ext_resource path="res://images/road_x_vert.png" type="Texture" id=5]
-[ext_resource path="res://images/road_x.png" type="Texture" id=6]
+[ext_resource path="res://Crossroad.cs" type="Script" id=2]
+[ext_resource path="res://images/road_x_hori.png" type="Texture" id=3]
+[ext_resource path="res://images/road_x_vert.png" type="Texture" id=4]
+[ext_resource path="res://images/road_x.png" type="Texture" id=5]
+[ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/PxPlus_IBM_VGA8.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Score.cs" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 20, 20 )
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 16
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="game" type="Node" index="0"]
 
@@ -33,33 +43,13 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 2, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 2, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 2, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 2, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 3, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 2, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 2, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 2, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 2, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CarSpawn" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Crossroad" type="Area2D" parent="." index="1"]
 
-position = Vector2( 328, 280 )
-spawnTargetNode = NodePath("..")
-
-[node name="CarSpawn2" parent="." index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 8, 152 )
-direction = 3
-spawnTargetNode = NodePath("..")
-
-[node name="CarSpawn3" parent="." index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 504, 136 )
-direction = 2
-spawnTargetNode = NodePath("..")
-
-[node name="CarSpawn4" parent="." index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 344, 8 )
-_sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-direction = 1
-spawnTargetNode = NodePath("..")
-
-[node name="Crossroad" type="Area2D" parent="." index="5"]
-
+editor/display_folded = true
 position = Vector2( 336, 144 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -68,18 +58,69 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 _mode = 2
-horizontal = ExtResource( 4 )
-vertical = ExtResource( 5 )
-none = ExtResource( 6 )
+horizontal = ExtResource( 3 )
+vertical = ExtResource( 4 )
+none = ExtResource( 5 )
 
 [node name="Image" type="Sprite" parent="Crossroad" index="0"]
 
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crossroad" index="1"]
 
 shape = SubResource( 1 )
+
+[node name="Cars" type="Node" parent="." index="2"]
+
+[node name="CarSpawn" parent="." index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 328, 280 )
+spawnTargetNode = NodePath("../Cars")
+
+[node name="CarSpawn2" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 8, 152 )
+direction = 3
+spawnTargetNode = NodePath("../Cars")
+
+[node name="CarSpawn3" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 504, 136 )
+direction = 2
+spawnTargetNode = NodePath("../Cars")
+
+[node name="CarSpawn4" parent="." index="6" instance=ExtResource( 6 )]
+
+position = Vector2( 344, 8 )
+_sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
+direction = 1
+spawnTargetNode = NodePath("../Cars")
+
+[node name="Score" type="Label" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Traffic Planner"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 8 )
+_sections_unfolded = [ "custom_fonts" ]
+MaxLife = 10
 
 

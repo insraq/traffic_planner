@@ -5,6 +5,28 @@ public class ScoreManager : Node2D
 {
     private const int MAX_CONCURRENT_SOUND = 2;
     private int concurrentSound = 0;
+    private int _life;
+
+    [Export]
+    public int Life
+    {
+        get { return _life; }
+        set
+        {
+            EmitSignal("LifeHasChanged", value, _life);
+            _life = value;
+            if (_life < 0)
+            {
+                OS.Alert("Game over!");
+                GetTree().SetPause(true);
+            }
+        }
+    }
+
+    public override void _Ready()
+    {
+        AddUserSignal("LifeHasChanged");
+    }
 
     public void PlaySoundStart()
     {

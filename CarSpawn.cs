@@ -7,17 +7,22 @@ public class CarSpawn : Area2D
     [Export] private readonly PackedScene carScene;
     [Export] private readonly NodePath spawnTargetNode;
 
+    [Node("/root/ScoreManager")] private readonly ScoreManager scoreManager;
+    [Node("Explode")] private readonly Sprite explode;
+    [Node("Animation")] private readonly AnimationPlayer animationPlayer;
+
     private readonly Random random = new Random();
     private Node spawnTarget;
 
     public override void _Ready()
     {
+        this.WireNodes();
+        explode.Visible = false;
         spawnTarget = GetNode(spawnTargetNode);
     }
 
     public override void _Process(float delta)
     {
-
     }
 
     private void OnTimeOut()
@@ -27,8 +32,12 @@ public class CarSpawn : Area2D
         {
             if (area is Car car && car.GetDirection() == direction)
             {
-                GetTree().SetPause(true);
-                OS.Alert("Game Over");
+                scoreManager.Life--;
+                if (!animationPlayer.IsPlaying())
+                {
+                    explode.SetVisible(true);
+                    animationPlayer.Play("Explode");
+                }
                 return;
             }
         }

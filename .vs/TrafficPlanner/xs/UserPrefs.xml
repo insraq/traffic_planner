@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="CarSpawn.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Score.cs">
     <Files>
-      <File FileName="CarSpawn.cs" Line="29" Column="24" />
+      <File FileName="CarSpawn.cs" Line="27" Column="5" />
+      <File FileName="Score.cs" Line="19" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
