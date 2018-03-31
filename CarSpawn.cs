@@ -6,6 +6,7 @@ public class CarSpawn : Area2D
     [Export] private Car.CarDirection direction;
     [Export] private readonly PackedScene carScene;
     [Export] private readonly NodePath spawnTargetNode;
+    [Export] public bool ShouldSpawn { get; set; } = true;
 
     [Node("/root/ScoreManager")] private readonly ScoreManager scoreManager;
     [Node("Explode")] private readonly Sprite explode;
@@ -41,14 +42,18 @@ public class CarSpawn : Area2D
                 return;
             }
         }
-        var roll = random.Next(0, 3);
-        if (roll > 0)
+        if (ShouldSpawn)
         {
-            return;
+            var roll = random.Next(0, 3);
+            if (roll > 0)
+            {
+                return;
+            }
+            var newCar = (Car)carScene.Instance();
+            newCar.SetDirection(direction);
+            newCar.SetGlobalPosition(GetGlobalPosition());
+            spawnTarget.AddChild(newCar);
         }
-        var newCar = (Car)carScene.Instance();
-        newCar.SetDirection(direction);
-        newCar.SetGlobalPosition(GetGlobalPosition());
-        spawnTarget.AddChild(newCar);
+
     }
 }

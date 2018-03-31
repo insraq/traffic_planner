@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Crossroad.cs" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://images/road_x.png" type="Texture" id=5]
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=6]
 [ext_resource path="res://fonts/PxPlus_IBM_VGA8.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Score.cs" type="Script" id=8]
+[ext_resource path="res://Tutorial.cs" type="Script" id=8]
+[ext_resource path="res://images/arrow.png" type="Texture" id=9]
+[ext_resource path="res://Score.cs" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -74,7 +76,7 @@ shape = SubResource( 1 )
 
 [node name="Cars" type="Node" parent="." index="2"]
 
-[node name="CarSpawn" parent="." index="3" instance=ExtResource( 6 )]
+[node name="CarSpawn1" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 328, 280 )
 spawnTargetNode = NodePath("../Cars")
@@ -98,7 +100,7 @@ _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
 direction = 1
 spawnTargetNode = NodePath("../Cars")
 
-[node name="Score" type="Label" parent="." index="7"]
+[node name="Tutorial" type="Label" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -115,12 +117,52 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
-text = "Traffic Planner"
+text = "Tutorial"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 8 )
 _sections_unfolded = [ "custom_fonts" ]
+
+[node name="Arrow" type="Sprite" parent="Tutorial" index="0"]
+
+visible = false
+position = Vector2( 272, 80 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Timer" type="Timer" parent="Tutorial" index="1"]
+
+process_mode = 1
+wait_time = 0.05
+one_shot = false
+autostart = true
+
+[node name="Score" type="Label" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 256.0
+margin_right = 304.0
+margin_bottom = 272.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Life"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 10 )
+_sections_unfolded = [ "custom_fonts" ]
 MaxLife = 10
+
+[connection signal="timeout" from="Tutorial/Timer" to="Tutorial" method="OnTimeOut"]
 
 
