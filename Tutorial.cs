@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public class Tutorial : Label
@@ -8,7 +9,8 @@ public class Tutorial : Label
     [Node("../CarSpawn2")] private CarSpawn left;
     [Node("../CarSpawn3")] private CarSpawn right;
     [Node("../CarSpawn4")] private CarSpawn top;
-    [Node("Arrow")] private Sprite arrow;
+    [Node("/root/ScoreManager")] private ScoreManager scoreManager;
+    [Node("Hand")] private Node2D hand;
 
     private Queue<Step> steps = new Queue<Step>();
     private string subtitle;
@@ -16,29 +18,31 @@ public class Tutorial : Label
     public override void _Ready()
     {
         this.WireNodes();
+        var spawners = new List<CarSpawn> { bottom, left, right, top };
+        spawners.ForEach((s) => s.AutoSpawn = false);
 
-        bottom.ShouldSpawn = false;
-        left.ShouldSpawn = false;
-        right.ShouldSpawn = false;
-        top.ShouldSpawn = false;
-
-        steps.Enqueue(new Step("Welcome to Traffic Police\nTouch to continue...", () => { }));
+        steps.Enqueue(new Step("Welcome, the new traffic light\nTouch to continue...", () => { }));
         steps.Enqueue(new Step("Traffic comes from all directions\nAnd they need to pass the crossroad", () =>
         {
-            left.ShouldSpawn = true;
-            right.ShouldSpawn = true;
+            left.AutoSpawn = true;
+            right.AutoSpawn = true;
+            left.SpawnChance = 0.5f;
         }));
         steps.Enqueue(new Step("You can touch the crossroad\nto switch allowed directions", () =>
         {
-            top.ShouldSpawn = true;
-            bottom.ShouldSpawn = true;
-            arrow.Visible = true;
+            spawners.ForEach((s) => s.SpawnChance = 0.1f);
+            spawners.ForEach((s) => s.AutoSpawn = true);
+            hand.Visible = true;
         }));
         steps.Enqueue(new Step("If the traffic reaches the\nend of the screen, you lose a life", () =>
         {
-            arrow.Visible = false;
+            hand.Visible = false;
         }));
-        steps.Enqueue(new Step("Now you know the drill\nGood luck and have fun", () => { }));
+        steps.Enqueue(new Step("Now you know the drill\nGood luck and have fun", () =>
+        {
+            spawners.ForEach((s) => s.SpawnChance = 0.25f);
+            scoreManager.StartCountdown(30f);
+        }));
 
         NextStep();
     }
@@ -57,7 +61,12 @@ public class Tutorial : Label
 
     public override void _Process(float delta)
     {
-
+        if (subtitle.Length == 0)
+        {
+            return;
+        }
+        Text += subtitle[0];
+        subtitle = subtitle.Substring(1);
     }
 
     public override void _Input(InputEvent @event)
@@ -76,17 +85,6 @@ public class Tutorial : Label
 
         }
     }
-
-    private void OnTimeOut()
-    {
-        if (subtitle.Length == 0)
-        {
-            return;
-        }
-        Text += subtitle[0];
-        subtitle = subtitle.Substring(1);
-    }
-
 
     public struct Step
     {

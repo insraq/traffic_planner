@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public class ScoreManager : Node2D
+public class ScoreManager : Node
 {
     private const int MAX_CONCURRENT_SOUND = 2;
     private int concurrentSound = 0;
     private int _life;
+    public float Countdown { get; set; }
 
-    [Export]
     public int Life
     {
         get { return _life; }
@@ -23,9 +23,16 @@ public class ScoreManager : Node2D
         }
     }
 
+    public void StartCountdown(float cd)
+    {
+        Countdown = cd;
+        EmitSignal("CountdownStarted", cd);
+    }
+
     public override void _Ready()
     {
         AddUserSignal("LifeHasChanged");
+        AddUserSignal("CountdownStarted");
     }
 
     public void PlaySoundStart()

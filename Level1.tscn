@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Crossroad.cs" type="Script" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://images/road_x_vert.png" type="Texture" id=4]
 [ext_resource path="res://images/road_x.png" type="Texture" id=5]
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=6]
-[ext_resource path="res://fonts/PxPlus_IBM_VGA8.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Tutorial.cs" type="Script" id=8]
-[ext_resource path="res://images/arrow.png" type="Texture" id=9]
-[ext_resource path="res://Score.cs" type="Script" id=10]
+[ext_resource path="res://images/hand.png" type="Texture" id=9]
+[ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Score.cs" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -18,7 +19,7 @@ extents = Vector2( 20, 20 )
 
 [sub_resource type="DynamicFont" id=2]
 
-size = 16
+size = 8
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 7 )
@@ -102,6 +103,7 @@ spawnTargetNode = NodePath("../Cars")
 
 [node name="Tutorial" type="Label" parent="." index="7"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -109,7 +111,7 @@ anchor_bottom = 0.0
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 304.0
-margin_bottom = 32.0
+margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -118,27 +120,84 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
 text = "Tutorial"
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 8 )
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
 
-[node name="Arrow" type="Sprite" parent="Tutorial" index="0"]
+[node name="Hand" type="Node2D" parent="Tutorial" index="0"]
 
 visible = false
-position = Vector2( 272, 80 )
-texture = ExtResource( 9 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Timer" type="Timer" parent="Tutorial" index="1"]
+[node name="Sprite" type="Sprite" parent="Tutorial/Hand" index="0"]
 
-process_mode = 1
-wait_time = 0.05
-one_shot = false
-autostart = true
+position = Vector2( 320, 144 )
+texture = ExtResource( 9 )
 
-[node name="Score" type="Label" parent="." index="8"]
+[node name="Label2" type="Label" parent="Tutorial/Hand" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 273.0
+margin_top = 161.0
+margin_right = 368.0
+margin_bottom = 177.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Touch here!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Margin", "custom_colors", "custom_fonts" ]
+
+[node name="Label" type="Label" parent="Tutorial/Hand" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 272.0
+margin_top = 160.0
+margin_right = 368.0
+margin_bottom = 176.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Touch here!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="Score" type="Node2D" parent="." index="9"]
+
+script = ExtResource( 11 )
+MaxLife = 10
+
+[node name="Score" type="Label" parent="Score" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -146,7 +205,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 16.0
 margin_top = 256.0
-margin_right = 304.0
+margin_right = 128.0
 margin_bottom = 272.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -155,14 +214,35 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 2 )
-text = "Life"
+text = "Life 10"
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 10 )
 _sections_unfolded = [ "custom_fonts" ]
-MaxLife = 10
 
-[connection signal="timeout" from="Tutorial/Timer" to="Tutorial" method="OnTimeOut"]
+[node name="Countdown" type="Label" parent="Score" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 128.0
+margin_top = 256.0
+margin_right = 240.0
+margin_bottom = 272.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Countdown"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 

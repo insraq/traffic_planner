@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/road_x_hori.png-f266f7e4cf47a3223bbc2534cc9103ed.stex"
+path="res://.import/hand.png-56e5f037390cba127930796a33d0cd35.stex"
 
 [deps]
 
-source_file="res://images/road_x_hori.png"
-source_md5="bdb2aa971da6ff718d73aeda58119f35"
+source_file="res://images/hand.png"
+source_md5="2c79a19a998b08202b2a09cb2754ebad"
 
-dest_files=[ "res://.import/road_x_hori.png-f266f7e4cf47a3223bbc2534cc9103ed.stex" ]
-dest_md5="a4b3da348749b2972d2a23bdc00fea72"
+dest_files=[ "res://.import/hand.png-56e5f037390cba127930796a33d0cd35.stex" ]
+dest_md5="65e7837871d72843405630135311dbf3"
 
 [params]
 

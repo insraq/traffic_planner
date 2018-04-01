@@ -1,26 +1,46 @@
 using Godot;
 using System;
 
-public class Score : Label
+public class Score : Node2D
 {
 
     [Export] private int MaxLife = 10;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
+    [Node("Score")] private Label score;
+    [Node("Countdown")] private Label _countdown;
+
+    private bool startCountdown;
 
     public override void _Ready()
     {
         this.WireNodes();
-        scoreManager.Connect("LifeHasChanged", this, "OnLifeChange");
+        scoreManager.Connect("LifeHasChanged", this, "UpdateLife");
+        scoreManager.Connect("CountdownStarted", this, "StartCountdown");
         scoreManager.Life = MaxLife;
     }
 
-    public void OnLifeChange(int newLife, int oldLife)
+    public void UpdateLife(int newLife, int oldLife)
     {
         if (newLife < 0)
         {
             newLife = 0;
         }
-        SetText($"Life: {newLife}");
+        score.SetText($"Life {newLife}");
+    }
+
+    public override void _Process(float delta)
+    {
+        if (startCountdown)
+        {
+            scoreManager.Countdown -= delta;
+            var s = scoreManager.Countdown.ToString("F2");
+            _countdown.SetText($"Countdown {s}");
+        }
+    }
+
+    public void StartCountdown(float cd)
+    {
+        startCountdown = true;
     }
 
 }

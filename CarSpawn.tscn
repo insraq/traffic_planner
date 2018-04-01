@@ -28,7 +28,7 @@ tracks/0/keys = {
 "values": [ 0, 8 ]
 }
 
-[node name="CarSpawn" type="Area2D"]
+[node name="CarSpawn" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -39,7 +39,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Visibility" ]
-ShouldSpawn = true
+AutoSpawn = true
 direction = 0
 carScene = ExtResource( 2 )
 spawnTargetNode = null

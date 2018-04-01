@@ -6,12 +6,14 @@ public class CarSpawn : Area2D
     [Export] private Car.CarDirection direction;
     [Export] private readonly PackedScene carScene;
     [Export] private readonly NodePath spawnTargetNode;
-    [Export] public bool ShouldSpawn { get; set; } = true;
+    [Export] public bool AutoSpawn { get; set; } = true;
 
     [Node("/root/ScoreManager")] private readonly ScoreManager scoreManager;
     [Node("Explode")] private readonly Sprite explode;
     [Node("Animation")] private readonly AnimationPlayer animationPlayer;
+    [Node("Timer")] private readonly Timer timer;
 
+    public float SpawnChance { get; set; } = 0.5f;
     private readonly Random random = new Random();
     private Node spawnTarget;
 
@@ -42,18 +44,22 @@ public class CarSpawn : Area2D
                 return;
             }
         }
-        if (ShouldSpawn)
+        if (AutoSpawn)
         {
-            var roll = random.Next(0, 3);
-            if (roll > 0)
+            var roll = random.FloatRange(0, 1);
+            if (roll > SpawnChance)
             {
                 return;
             }
-            var newCar = (Car)carScene.Instance();
-            newCar.SetDirection(direction);
-            newCar.SetGlobalPosition(GetGlobalPosition());
-            spawnTarget.AddChild(newCar);
+            Spawn();
         }
+    }
 
+    private void Spawn()
+    {
+        var newCar = (Car)carScene.Instance();
+        newCar.SetDirection(direction);
+        newCar.SetGlobalPosition(GetGlobalPosition());
+        spawnTarget.AddChild(newCar);
     }
 }
