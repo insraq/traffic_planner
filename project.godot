@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="TrafficPlanner"
+config/name="Traffic Light"
 run/main_scene="res://Level1.tscn"
 boot_splash/image="res://images/spash.png"
 config/icon="res://icon.png"

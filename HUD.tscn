@@ -47,7 +47,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="HUD" type="Node2D"]
+[node name="HUD" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 MaxLife = 10
@@ -137,6 +137,7 @@ text = "Game Over"
 align = 1
 valign = 1
 autowrap = true
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

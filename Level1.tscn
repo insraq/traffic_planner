@@ -12,7 +12,7 @@
 [ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=10]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 20, 20 )
@@ -73,7 +73,7 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crossroad" index="1"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Cars" type="Node" parent="." index="2"]
 

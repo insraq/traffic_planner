@@ -18,6 +18,7 @@ public class Tutorial : Label
     public override void _Ready()
     {
         this.WireNodes();
+        scoreManager.Countdown = 15f;
         var spawners = new List<CarSpawn> { bottom, left, right, top };
         spawners.ForEach((s) => s.AutoSpawn = false);
 
@@ -34,14 +35,14 @@ public class Tutorial : Label
             spawners.ForEach((s) => s.AutoSpawn = true);
             hand.Visible = true;
         }));
-        steps.Enqueue(new Step("If the traffic reaches the\nend of the screen, you lose a life", () =>
+        steps.Enqueue(new Step("If the traffic jam reaches the\nend of the screen, you lose a life", () =>
         {
             hand.Visible = false;
         }));
         steps.Enqueue(new Step("Now hold on for antoehr 15s\nGood luck and have fun", () =>
         {
             spawners.ForEach((s) => s.SpawnChance = 0.25f);
-            scoreManager.StartCountdown(15f);
+            scoreManager.StartCountdown(scoreManager.Countdown);
         }));
 
         NextStep();

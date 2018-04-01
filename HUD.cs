@@ -18,8 +18,10 @@ public class HUD : Node2D
     public override void _Ready()
     {
         this.WireNodes();
+        result.SetPauseMode(PauseModeEnum.Process);
         scoreManager.Connect("LifeHasChanged", this, "UpdateLife");
         scoreManager.Connect("LevelFail", this, "GameOver");
+        scoreManager.Connect("LevelPass", this, "NextLevel");
         scoreManager.Life = MaxLife;
     }
 
@@ -43,8 +45,20 @@ public class HUD : Node2D
     {
         ShowResult("Game Over", "Touch to Retry", () =>
         {
+            GetTree().SetPause(false);
             GetTree().ReloadCurrentScene();
         });
+        GetTree().SetPause(true);
+    }
+
+    private void NextLevel()
+    {
+        ShowResult("Mission Accomplished", "Next Level", () =>
+        {
+            GetTree().SetPause(false);
+            GetTree().ReloadCurrentScene();
+        });
+        GetTree().SetPause(true);
     }
 
     private void ShowResult(string titleText, string buttonText, Action onPress)

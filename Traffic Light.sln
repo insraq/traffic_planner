@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traffic Light", "Traffic Light.csproj", "{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	Release|Any CPU = Release|Any CPU
+	Tools|Any CPU = Tools|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{D53CFD6A-44D1-4C65-A954-D1B04E8625DC}.Tools|Any CPU.Build.0 = Tools|Any CPU
+	EndGlobalSection
+EndGlobal
