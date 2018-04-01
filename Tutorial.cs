@@ -38,10 +38,10 @@ public class Tutorial : Label
         {
             hand.Visible = false;
         }));
-        steps.Enqueue(new Step("Now you know the drill\nGood luck and have fun", () =>
+        steps.Enqueue(new Step("Now hold on for antoehr 15s\nGood luck and have fun", () =>
         {
             spawners.ForEach((s) => s.SpawnChance = 0.25f);
-            scoreManager.StartCountdown(30f);
+            scoreManager.StartCountdown(15f);
         }));
 
         NextStep();
