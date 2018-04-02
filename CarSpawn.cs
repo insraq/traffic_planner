@@ -7,13 +7,13 @@ public class CarSpawn : Area2D
     [Export] private readonly PackedScene carScene;
     [Export] private readonly NodePath spawnTargetNode;
     [Export] public bool AutoSpawn { get; set; } = true;
+    [Export] public float SpawnChance { get; set; } = 0.5f;
 
     [Node("/root/ScoreManager")] private readonly ScoreManager scoreManager;
     [Node("Explode")] private readonly Sprite explode;
     [Node("Animation")] private readonly AnimationPlayer animationPlayer;
     [Node("Timer")] private readonly Timer timer;
 
-    public float SpawnChance { get; set; } = 0.5f;
     private readonly Random random = new Random();
     private Node spawnTarget;
 

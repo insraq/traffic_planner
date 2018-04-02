@@ -4,10 +4,13 @@ using System;
 public class HUD : Node2D
 {
 
-    [Export] private int MaxLife = 10;
+    [Export] private int maxLife = 10;
+    [Export] private float autoCountdown = 0;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
     [Node("Score")] private Label score;
+    [Node("ScoreShadow")] private Label scoreShadow;
     [Node("Countdown")] private Label countdown;
+    [Node("CountdownShadow")] private Label countdownShadow;
     [Node("Result")] private Panel result;
     [Node("Result/Title")] private Label title;
     [Node("Result/Button")] private Label button;
@@ -22,18 +25,24 @@ public class HUD : Node2D
         scoreManager.Connect("LifeHasChanged", this, "UpdateLife");
         scoreManager.Connect("LevelFail", this, "GameOver");
         scoreManager.Connect("LevelPass", this, "NextLevel");
-        scoreManager.Life = MaxLife;
+        scoreManager.Life = maxLife;
+        if (autoCountdown > 0)
+        {
+            scoreManager.StartCountdown(autoCountdown);
+        }
     }
 
     public override void _Process(float delta)
     {
         var s = scoreManager.Countdown.ToString("F2");
         countdown.SetText($"Countdown {s}");
+        countdownShadow.SetText($"Countdown {s}");
     }
 
     private void UpdateLife(int newLife, int oldLife)
     {
         score.SetText($"Life {newLife}");
+        scoreShadow.SetText($"Life {newLife}");
     }
 
     private void StartCountdown(float cd)

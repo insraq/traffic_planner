@@ -1,28 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
-[ext_resource path="res://Crossroad.cs" type="Script" id=2]
-[ext_resource path="res://images/road_x_hori.png" type="Texture" id=3]
-[ext_resource path="res://images/road_x_vert.png" type="Texture" id=4]
-[ext_resource path="res://images/road_x.png" type="Texture" id=5]
-[ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=6]
-[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Tutorial.cs" type="Script" id=8]
-[ext_resource path="res://images/hand.png" type="Texture" id=9]
-[ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=10]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Crossroad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Tutorial.cs" type="Script" id=5]
+[ext_resource path="res://images/hand.png" type="Texture" id=6]
+[ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=7]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 20, 20 )
-
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 
 size = 8
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 7 )
+font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="game" type="Node" index="0"]
@@ -50,53 +42,30 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Crossroad" type="Area2D" parent="." index="1"]
-
-editor/display_folded = true
-position = Vector2( 336, 144 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 2 )
-_mode = 2
-horizontal = ExtResource( 3 )
-vertical = ExtResource( 4 )
-none = ExtResource( 5 )
-
-[node name="Image" type="Sprite" parent="Crossroad" index="0"]
-
-texture = ExtResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Crossroad" index="1"]
-
-shape = SubResource( 1 )
+[node name="Crossroad" parent="." index="1" instance=ExtResource( 2 )]
 
 [node name="Cars" type="Node" parent="." index="2"]
 
-[node name="CarSpawn1" parent="." index="3" instance=ExtResource( 6 )]
+[node name="CarSpawn1" parent="." index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 328, 280 )
+position = Vector2( 344, 280 )
 spawnTargetNode = NodePath("../Cars")
 
-[node name="CarSpawn2" parent="." index="4" instance=ExtResource( 6 )]
+[node name="CarSpawn2" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 8, 152 )
 direction = 3
 spawnTargetNode = NodePath("../Cars")
 
-[node name="CarSpawn3" parent="." index="5" instance=ExtResource( 6 )]
+[node name="CarSpawn3" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 504, 136 )
 direction = 2
 spawnTargetNode = NodePath("../Cars")
 
-[node name="CarSpawn4" parent="." index="6" instance=ExtResource( 6 )]
+[node name="CarSpawn4" parent="." index="6" instance=ExtResource( 3 )]
 
-position = Vector2( 344, 8 )
+position = Vector2( 328, 8 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
 direction = 1
 spawnTargetNode = NodePath("../Cars")
@@ -118,13 +87,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Tutorial"
 uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 8 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="Hand" type="Node2D" parent="Tutorial" index="0"]
@@ -135,7 +104,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 [node name="Sprite" type="Sprite" parent="Tutorial/Hand" index="0"]
 
 position = Vector2( 320, 144 )
-texture = ExtResource( 9 )
+texture = ExtResource( 6 )
 
 [node name="Label2" type="Label" parent="Tutorial/Hand" index="1"]
 
@@ -153,7 +122,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Touch here!"
 percent_visible = 1.0
@@ -177,7 +146,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Touch here!"
 percent_visible = 1.0
 lines_skipped = 0
@@ -186,12 +155,12 @@ _sections_unfolded = [ "custom_fonts" ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 7 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="HUD" parent="." index="9" instance=ExtResource( 11 )]
+[node name="HUD" parent="." index="9" instance=ExtResource( 8 )]
 
 
