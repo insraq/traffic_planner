@@ -43,7 +43,9 @@ _sections_unfolded = [ "Visibility" ]
 AutoSpawn = true
 SpawnChance = 0.5
 direction = 0
-carScene = ExtResource( 2 )
+carScene1 = ExtResource( 2 )
+carScene2 = null
+carScene3 = null
 spawnTargetNode = null
 
 [node name="Timer" type="Timer" parent="." index="0"]

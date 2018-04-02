@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public partial class Car : Area2D
 {
     [Export] public CarDirection Direction { get; set; } = CarDirection.Up;
+    [Export] private int acce = 10;
+    [Export] private int maxSpeed = 150;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
 
-    private const int ACCE = 10;
-    private const int MAX_SPEED = 150;
-    private const int HEIGHT = 7;
-    private const int WIDTH = 5;
+    private const int Height = 7;
+    private const int Width = 5;
     private int speed;
     private Random rand = new Random();
     public HashSet<Area2D> overlap = new HashSet<Area2D>();
@@ -34,7 +34,7 @@ public partial class Car : Area2D
     {
         this.WireNodes();
         SetInitialRotate();
-        speed = MAX_SPEED / ACCE;
+        speed = maxSpeed;
     }
 
     private void SetInitialRotate()
@@ -57,16 +57,27 @@ public partial class Car : Area2D
     {
         if (area is Car car)
         {
-            var myPos = GetHeadPosition();
-            var theirPos = car.GetHeadPosition();
-            if (
-                (Direction == CarDirection.Up && myPos.y - HEIGHT < theirPos.y + WIDTH) ||
-                (Direction == CarDirection.Down && myPos.y + HEIGHT > theirPos.y - WIDTH) ||
-                (Direction == CarDirection.Left && myPos.x - HEIGHT < theirPos.x + WIDTH) ||
-                (Direction == CarDirection.Right && myPos.x + HEIGHT > theirPos.x - WIDTH) ||
-                car.overlap.Contains(this))
+            var myPos = GetGlobalPosition();
+            var theirPos = car.GetGlobalPosition();
+            if (Direction == CarDirection.Up)
             {
-                return;
+                if (myPos.y - Height < theirPos.y + Width) { return; }
+                if (Direction == car.Direction && myPos.y < theirPos.y) { return; }
+            }
+            if (Direction == CarDirection.Down)
+            {
+                if (myPos.y + Height > theirPos.y - Width) { return; }
+                if (Direction == car.Direction && myPos.y > theirPos.y) { return; }
+            }
+            if (Direction == CarDirection.Left)
+            {
+                if (myPos.x - Height < theirPos.x + Width) { return; }
+                if (Direction == car.Direction && myPos.x < theirPos.x) { return; }
+            }
+            if (Direction == CarDirection.Right)
+            {
+                if (myPos.x + Height > theirPos.x - Width) { return; }
+                if (Direction == car.Direction && myPos.x > theirPos.x) { return; }
             }
             overlap.Add(car);
             Stop();
@@ -82,14 +93,12 @@ public partial class Car : Area2D
         }
     }
 
-    public Vector2 GetHeadPosition()
-    {
-        var myPos = GetGlobalPosition();
-        return new Vector2(myPos.x, myPos.y - HEIGHT);
-    }
-
     private void OnAreaExited(Area2D area)
     {
+        if (overlap.Count == 0)
+        {
+            return;
+        }
         overlap.Remove(area);
         if (overlap.Count == 0)
         {
@@ -99,9 +108,9 @@ public partial class Car : Area2D
 
     public override void _PhysicsProcess(float delta)
     {
-        if (speed > 0 && speed < MAX_SPEED)
+        if (speed > 0 && speed < maxSpeed)
         {
-            speed += MAX_SPEED / ACCE;
+            speed += maxSpeed / acce;
         }
 
         if (Direction == CarDirection.Up)
@@ -141,7 +150,7 @@ public partial class Car : Area2D
 
     public void Start()
     {
-        speed = MAX_SPEED / ACCE;
+        speed = maxSpeed / acce;
     }
 }
 

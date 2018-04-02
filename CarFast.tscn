@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Car.tscn" type="PackedScene" id=1]
+[ext_resource path="res://images/car_f.png" type="Texture" id=2]
+
+[node name="Car" instance=ExtResource( 1 )]
+
+acce = 50
+maxSpeed = 150
+
+[node name="image" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+

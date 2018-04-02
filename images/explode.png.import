@@ -10,7 +10,7 @@ source_file="res://images/explode.png"
 source_md5="e98b651c124ec90bb1e156f260aadc4e"
 
 dest_files=[ "res://.import/explode.png-fc3a8dee061c16fb657ae0a003ab5ab5.stex" ]
-dest_md5="2ebdb2d7888e0885dbfb17995e99325c"
+dest_md5="d751fd4d5a79bdf422820db5a8adaa03"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

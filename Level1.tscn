@@ -49,29 +49,25 @@ __meta__ = {
 
 [node name="CarSpawn1" parent="." index="3" instance=ExtResource( 3 )]
 
-position = Vector2( 344, 280 )
-SpawnChance = 0.5
+position = Vector2( 344, 283 )
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn2" parent="." index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 8, 152 )
-SpawnChance = 0.5
+position = Vector2( 5, 152 )
 direction = 3
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn3" parent="." index="5" instance=ExtResource( 3 )]
 
-position = Vector2( 504, 136 )
-SpawnChance = 0.5
+position = Vector2( 507, 136 )
 direction = 2
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn4" parent="." index="6" instance=ExtResource( 3 )]
 
-position = Vector2( 328, 8 )
+position = Vector2( 328, 5 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-SpawnChance = 0.5
 direction = 1
 spawnTargetNode = NodePath("../Cars")
 

@@ -43,7 +43,7 @@ position = Vector2( 304, 80 )
 
 [node name="CarSpawn1" parent="." index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 312, 284.062 )
+position = Vector2( 312, 283.062 )
 SpawnChance = 0.1
 spawnTargetNode = NodePath("../Cars")
 

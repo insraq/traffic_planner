@@ -10,7 +10,7 @@ source_file="res://images/spash.png"
 source_md5="c6b768988763ad0cd83048f1e8314725"
 
 dest_files=[ "res://.import/spash.png-381b65144c297bedd4694da86d99971f.stex" ]
-dest_md5="dc03107917a63091ece228d2e2971e15"
+dest_md5="df50ac84d7f979cb8e518d7cebbf1e1b"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

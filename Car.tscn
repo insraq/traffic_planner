@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 6, 10 )
 
-[node name="Car" type="Area2D" index="0"]
+[node name="Car" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -19,6 +19,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 Direction = 0
+acce = 10
+maxSpeed = 100
 
 [node name="image" type="Sprite" parent="." index="0"]
 

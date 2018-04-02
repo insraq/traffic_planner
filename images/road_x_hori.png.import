@@ -10,7 +10,7 @@ source_file="res://images/road_x_hori.png"
 source_md5="bdb2aa971da6ff718d73aeda58119f35"
 
 dest_files=[ "res://.import/road_x_hori.png-f266f7e4cf47a3223bbc2534cc9103ed.stex" ]
-dest_md5="a4b3da348749b2972d2a23bdc00fea72"
+dest_md5="e3975b1255917ed5d51f76d61aefb076"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
