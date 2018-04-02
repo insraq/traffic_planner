@@ -6,6 +6,7 @@ public class HUD : Node2D
 
     [Export] private int maxLife = 10;
     [Export] private float autoCountdown = 0;
+    [Export] private PackedScene nextLevel;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
     [Node("Score")] private Label score;
     [Node("ScoreShadow")] private Label scoreShadow;
@@ -65,7 +66,7 @@ public class HUD : Node2D
         ShowResult("Mission Accomplished", "Next Level", () =>
         {
             GetTree().SetPause(false);
-            GetTree().ReloadCurrentScene();
+            GetTree().ChangeSceneTo(nextLevel);
         });
         GetTree().SetPause(true);
     }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Crossroad.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://images/hand.png" type="Texture" id=6]
 [ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level2.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -49,17 +50,20 @@ __meta__ = {
 [node name="CarSpawn1" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 344, 280 )
+SpawnChance = 0.5
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn2" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 8, 152 )
+SpawnChance = 0.5
 direction = 3
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn3" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 504, 136 )
+SpawnChance = 0.5
 direction = 2
 spawnTargetNode = NodePath("../Cars")
 
@@ -67,6 +71,7 @@ spawnTargetNode = NodePath("../Cars")
 
 position = Vector2( 328, 8 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
+SpawnChance = 0.5
 direction = 1
 spawnTargetNode = NodePath("../Cars")
 
@@ -162,5 +167,7 @@ mix_target = 0
 bus = "Master"
 
 [node name="HUD" parent="." index="9" instance=ExtResource( 8 )]
+
+nextLevel = ExtResource( 9 )
 
 
