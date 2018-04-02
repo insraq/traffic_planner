@@ -5,8 +5,8 @@ public class ScoreManager : Node
 {
     public bool Mute { get; set; } = false;
 
-    private const int MAX_CONCURRENT_SOUND = 2;
-    private int concurrentSound = 0;
+    private const int SoundPlayIntervalMsec = 5000;
+    private int lastSoundPlay = 0;
     private int _life = 0;
     private float _countdown = 0f;
     private bool shouldCountdown = false;
@@ -60,22 +60,13 @@ public class ScoreManager : Node
         Countdown -= delta;
     }
 
-    public void PlaySoundStart()
+    public void PlaySound(AudioStreamPlayer player)
     {
-        concurrentSound++;
-    }
-
-    public void PlaySoundEnd()
-    {
-        if (concurrentSound <= 0)
+        if (OS.GetTicksMsec() - lastSoundPlay > SoundPlayIntervalMsec)
         {
-            GD.Print("WARNING: PlaySoundEnd() called when concurrentSound <= 0");
+            lastSoundPlay = OS.GetTicksMsec();
+            player.Play();
         }
-        concurrentSound--;
     }
 
-    public Boolean ShouldPlaySound()
-    {
-        return !Mute && concurrentSound < MAX_CONCURRENT_SOUND;
-    }
 }

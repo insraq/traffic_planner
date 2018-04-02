@@ -6,7 +6,6 @@ public partial class Car : Area2D
 {
     [Export] public CarDirection Direction { get; set; } = CarDirection.Up;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
-    [Node("./Honk")] private AudioStreamPlayer audioPlayer;
 
     private const int ACCE = 10;
     private const int MAX_SPEED = 150;
@@ -131,27 +130,13 @@ public partial class Car : Area2D
         // Out of canvas, free
         if (!GetViewportRect().HasPoint(GetGlobalPosition()))
         {
-            if (audioPlayer.IsPlaying())
-            {
-                scoreManager.PlaySoundEnd();
-            }
             QueueFree();
         }
     }
 
     public void Stop()
     {
-        if (rand.Next(1, 2) == 1 && !audioPlayer.IsPlaying() && scoreManager.ShouldPlaySound())
-        {
-            scoreManager.PlaySoundStart();
-            audioPlayer.Play();
-        }
         speed = 0;
-    }
-
-    private void OnHonkFinished()
-    {
-        scoreManager.PlaySoundEnd();
     }
 
     public void Start()

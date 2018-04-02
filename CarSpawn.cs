@@ -13,6 +13,7 @@ public class CarSpawn : Area2D
     [Node("Explode")] private readonly Sprite explode;
     [Node("Animation")] private readonly AnimationPlayer animationPlayer;
     [Node("Timer")] private readonly Timer timer;
+    [Node("Honk")] private readonly AudioStreamPlayer honk;
 
     private readonly Random random = new Random();
     private Node spawnTarget;
@@ -36,6 +37,7 @@ public class CarSpawn : Area2D
             if (area is Car car && car.GetDirection() == direction)
             {
                 scoreManager.Life--;
+                scoreManager.PlaySound(honk);
                 if (!animationPlayer.IsPlaying())
                 {
                     explode.SetVisible(true);
