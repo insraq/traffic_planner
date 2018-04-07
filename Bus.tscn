@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Car.cs" type="Script" id=1]
+[ext_resource path="res://images/bus.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6, 14 )
+
+[node name="Car" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+Direction = 0
+acce = 5
+maxSpeed = 50
+
+[node name="image" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+
+[connection signal="area_exited" from="." to="." method="OnAreaExited"]
+
+

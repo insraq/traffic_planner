@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Crossroad.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=3]
-[ext_resource path="res://CarFast.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sounds/bg_pixelin_it_around_town.ogg" type="AudioStream" id=5]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Bus.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CarFast.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sounds/bg_pixelin_it_around_town.ogg" type="AudioStream" id=6]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 
-[node name="Level4" type="Node"]
+[node name="Level4" type="Node" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -54,21 +55,20 @@ position = Vector2( 368, 80 )
 
 position = Vector2( 376, 283 )
 _sections_unfolded = [ "Transform", "Visibility" ]
-SpawnChance = 0.2
+SpawnChance = 0.15
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn9" parent="." index="7" instance=ExtResource( 3 )]
 
 position = Vector2( 248, 283 )
 _sections_unfolded = [ "Transform", "Visibility" ]
-SpawnChance = 0.22
-carScene2 = ExtResource( 4 )
+SpawnChance = 0.1
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn2" parent="." index="8" instance=ExtResource( 3 )]
 
 position = Vector2( 5, 87.803 )
-SpawnChance = 0.3
+SpawnChance = 0.2
 direction = 3
 carScene2 = ExtResource( 4 )
 spawnTargetNode = NodePath("../Cars")
@@ -78,6 +78,7 @@ spawnTargetNode = NodePath("../Cars")
 position = Vector2( 5, 215.803 )
 SpawnChance = 0.2
 direction = 3
+carScene2 = ExtResource( 5 )
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn6" parent="." index="10" instance=ExtResource( 3 )]
@@ -90,9 +91,8 @@ spawnTargetNode = NodePath("../Cars")
 [node name="CarSpawn7" parent="." index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 507, 200 )
-SpawnChance = 0.25
+SpawnChance = 0.2
 direction = 2
-carScene2 = ExtResource( 4 )
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn4" parent="." index="12" instance=ExtResource( 3 )]
@@ -107,20 +107,19 @@ spawnTargetNode = NodePath("../Cars")
 
 position = Vector2( 360, 5 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-SpawnChance = 0.2
+SpawnChance = 0.1
 direction = 1
-carScene2 = ExtResource( 4 )
 spawnTargetNode = NodePath("../Cars")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="14"]
 
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = 0.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="HUD" parent="." index="15" instance=ExtResource( 6 )]
+[node name="HUD" parent="." index="15" instance=ExtResource( 7 )]
 
 autoCountdown = 30.0
 nextLevel = null

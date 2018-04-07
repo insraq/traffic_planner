@@ -52,7 +52,7 @@ public class CarSpawn : Area2D
         foreach (var area in areas)
         {
             lastExplosion = OS.GetTicksMsec();
-            if (area is Car car && car.GetDirection() == direction && !car.Counted)
+            if (area is Car car && car.GetDirection() == direction && car.GetSpeed() == 0 && !car.Counted)
             {
                 scoreManager.Life--;
                 car.Counted = true;

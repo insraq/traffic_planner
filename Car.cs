@@ -12,8 +12,6 @@ public partial class Car : Area2D
     public HashSet<Area2D> overlap = new HashSet<Area2D>();
     public bool Counted { get; set; }
 
-    private const int Height = 7;
-    private const int Width = 5;
     private int speed;
     private Random rand = new Random();
 
