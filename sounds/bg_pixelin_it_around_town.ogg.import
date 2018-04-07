@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bg_pixelin_it_around_town.ogg-11aa59aa7c49f3ef0044dd66c0b842be.oggstr"
+
+[deps]
+
+source_file="res://sounds/bg_pixelin_it_around_town.ogg"
+source_md5="651b2e53a2f03866d05f4e8884ba4689"
+
+dest_files=[ "res://.import/bg_pixelin_it_around_town.ogg-11aa59aa7c49f3ef0044dd66c0b842be.oggstr" ]
+dest_md5="f6ed3c18f716261eb8c669271355d0ab"
+
+[params]
+
+loop=true
+loop_offset=0

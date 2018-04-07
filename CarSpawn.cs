@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CarSpawn : Area2D
 {
-    [Export] private Car.CarDirection direction;
+    [Export] private CarDirection direction;
     [Export] private readonly PackedScene carScene1;
     [Export] private readonly PackedScene carScene2;
     [Export] private readonly PackedScene carScene3;
@@ -21,6 +21,8 @@ public class CarSpawn : Area2D
     private readonly Random random = new Random();
     private readonly List<PackedScene> carScenes = new List<PackedScene>();
     private Node spawnTarget;
+    private int lastExplosion = 0;
+    private const int ExplosionCooldown = 2000;
 
     public override void _Ready()
     {
@@ -49,9 +51,11 @@ public class CarSpawn : Area2D
         var areas = GetOverlappingAreas();
         foreach (var area in areas)
         {
-            if (area is Car car && car.GetDirection() == direction)
+            lastExplosion = OS.GetTicksMsec();
+            if (area is Car car && car.GetDirection() == direction && !car.Counted)
             {
                 scoreManager.Life--;
+                car.Counted = true;
                 scoreManager.PlaySound(honk);
                 if (!animationPlayer.IsPlaying())
                 {
@@ -61,7 +65,7 @@ public class CarSpawn : Area2D
                 return;
             }
         }
-        if (AutoSpawn)
+        if (AutoSpawn && OS.GetTicksMsec() - lastExplosion > ExplosionCooldown)
         {
             var roll = random.FloatRange(0, 1);
             if (roll > SpawnChance)

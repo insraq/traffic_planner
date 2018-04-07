@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Crossroad.cs" type="Script" id=1]
 [ext_resource path="res://images/road_x_hori.png" type="Texture" id=2]
@@ -10,10 +10,13 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 20 )
 
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 13, 13 )
+
 [node name="Crossroad" type="Area2D"]
 
-editor/display_folded = true
-position = Vector2( 336, 144 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -22,6 +25,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 _mode = 2
 horizontal = ExtResource( 2 )
 vertical = ExtResource( 3 )
@@ -31,8 +35,16 @@ none = ExtResource( 4 )
 
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="Outer" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
+
+[node name="Inner" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 2 )
+
+[connection signal="area_shape_entered" from="." to="." method="OnAreaShapeEntered"]
+
+[connection signal="area_shape_exited" from="." to="." method="OnAreaShapeExited"]
 
 

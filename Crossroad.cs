@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 public class Crossroad : Area2D
 {
@@ -12,16 +14,14 @@ public class Crossroad : Area2D
 
     [Node("./Image")] private Sprite image;
 
+    private const int OuterIdx = 0;
+    private HashSet<Car> outerOverlap = new HashSet<Car>();
+    private HashSet<Car> innerOverlap = new HashSet<Car>();
 
     public override void _Ready()
     {
         this.WireNodes();
         SetMode(Mode.Horizontal);
-    }
-
-    public Mode GetMode()
-    {
-        return _mode;
     }
 
     public void SetMode(Mode mode)
@@ -31,11 +31,9 @@ public class Crossroad : Area2D
         {
             case Mode.Horizontal:
                 image.SetTexture(horizontal);
-                StarCars();
                 return;
             case Mode.Vertical:
                 image.SetTexture(vertical);
-                StarCars();
                 return;
             default:
                 image.SetTexture(none);
@@ -44,18 +42,36 @@ public class Crossroad : Area2D
 
     }
 
-    public Boolean CanPass(Car.CarDirection direction)
+    public bool DirectionAllowed(CarDirection direction)
     {
-        return GetMode() == Mode.Vertical && (direction == Car.CarDirection.Up || direction == Car.CarDirection.Down) ||
-            GetMode() == Mode.Horizontal && (direction == Car.CarDirection.Left || direction == Car.CarDirection.Right);
+        if (_mode == Mode.Vertical)
+        {
+            return direction == CarDirection.Up || direction == CarDirection.Down;
+        }
+        if (_mode == Mode.Horizontal)
+        {
+            return direction == CarDirection.Left || direction == CarDirection.Right;
+        }
+        return true;
     }
 
-    private void StarCars()
+    public bool CanPass(CarDirection direction)
     {
-        var areas = GetOverlappingAreas();
-        foreach (var area in areas)
+        var otherDirectionCount = innerOverlap
+            .Where((c) => !DirectionAllowed(c.Direction))
+            .Count();
+        return otherDirectionCount == 0 && DirectionAllowed(direction);
+    }
+
+    public override void _Process(float delta)
+    {
+        var otherDirectionCount = innerOverlap
+            .Where((c) => !DirectionAllowed(c.Direction))
+            .Count();
+        if (otherDirectionCount == 0)
         {
-            if (area is Car car && CanPass(car.GetDirection()) && car.GetSpeed() == 0)
+            var carsToStart = outerOverlap.Where((c) => c.GetSpeed() == 0 && DirectionAllowed(c.Direction));
+            foreach (var car in carsToStart)
             {
                 car.Start();
             }
@@ -64,9 +80,9 @@ public class Crossroad : Area2D
 
     public override void _InputEvent(Godot.Object viewport, InputEvent @event, int shapeIdx)
     {
-        if (@event is InputEventMouseButton ev && ev.IsPressed())
+        if (@event is InputEventMouseButton ev && ev.IsPressed() && shapeIdx == OuterIdx)
         {
-            if (GetMode() == Mode.Horizontal)
+            if (_mode == Mode.Horizontal)
             {
                 SetMode(Mode.Vertical);
                 return;
@@ -77,11 +93,35 @@ public class Crossroad : Area2D
         }
     }
 
+    private void OnAreaShapeEntered(int areaId, Area2D area, int areaShapeIdx, int selfShapeIdx)
+    {
+        if (area is Car car)
+        {
+            if (selfShapeIdx == OuterIdx)
+            {
+                outerOverlap.Add(car);
+            }
+            else
+            {
+                innerOverlap.Add(car);
+            }
+        }
+    }
 
-    //    public override void _Process(float delta)
-    //    {
-    //        // Called every frame. Delta is time since last frame.
-    //        // Update game logic here.
-    //        
-    //    }
+
+    private void OnAreaShapeExited(int areaId, Area2D area, int area_shapeIdx, int selfShapeIdx)
+    {
+        if (area is Car car)
+        {
+            if (selfShapeIdx == OuterIdx)
+            {
+                outerOverlap.Remove(car);
+            }
+            else
+            {
+                innerOverlap.Remove(car);
+            }
+        }
+    }
+
 }

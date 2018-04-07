@@ -45,6 +45,8 @@ __meta__ = {
 
 [node name="Crossroad" parent="." index="1" instance=ExtResource( 2 )]
 
+position = Vector2( 336, 144 )
+
 [node name="Cars" type="Node" parent="." index="2"]
 
 [node name="CarSpawn1" parent="." index="3" instance=ExtResource( 3 )]
@@ -165,5 +167,6 @@ bus = "Master"
 [node name="HUD" parent="." index="9" instance=ExtResource( 8 )]
 
 nextLevel = ExtResource( 9 )
+debug = false
 
 

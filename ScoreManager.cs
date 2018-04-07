@@ -16,7 +16,7 @@ public class ScoreManager : Node
         get { return _life >= 0 ? _life : 0; }
         set
         {
-            EmitSignal("LifeHasChanged", value, _life);
+            EmitSignal("LifeHasChanged");
             _life = value;
             if (_life < 0)
             {

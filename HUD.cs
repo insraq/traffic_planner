@@ -7,6 +7,7 @@ public class HUD : Node2D
     [Export] private int maxLife = 10;
     [Export] private float autoCountdown = 0;
     [Export] private PackedScene nextLevel;
+    [Export] private bool debug;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
     [Node("Score")] private Label score;
     [Node("ScoreShadow")] private Label scoreShadow;
@@ -40,10 +41,11 @@ public class HUD : Node2D
         countdownShadow.SetText($"Countdown {s}");
     }
 
-    private void UpdateLife(int newLife, int oldLife)
+    private void UpdateLife()
     {
-        score.SetText($"Life {newLife}");
-        scoreShadow.SetText($"Life {newLife}");
+        var l = scoreManager.Life;
+        score.SetText($"Life {l}");
+        scoreShadow.SetText($"Life {l}");
     }
 
     private void StartCountdown(float cd)
@@ -53,6 +55,7 @@ public class HUD : Node2D
 
     private void GameOver()
     {
+        if (debug) return;
         ShowResult("Game Over", "Touch to Retry", () =>
         {
             GetTree().SetPause(false);
@@ -63,6 +66,7 @@ public class HUD : Node2D
 
     private void NextLevel()
     {
+        if (debug) return;
         ShowResult("Mission Accomplished", "Next Level", () =>
         {
             GetTree().SetPause(false);

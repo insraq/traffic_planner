@@ -9,11 +9,14 @@ public partial class Car : Area2D
     [Export] private int maxSpeed = 150;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
 
+    public HashSet<Area2D> overlap = new HashSet<Area2D>();
+    public bool Counted { get; set; }
+
     private const int Height = 7;
     private const int Width = 5;
     private int speed;
     private Random rand = new Random();
-    public HashSet<Area2D> overlap = new HashSet<Area2D>();
+
 
     public int GetSpeed()
     {
@@ -35,6 +38,7 @@ public partial class Car : Area2D
         this.WireNodes();
         SetInitialRotate();
         speed = maxSpeed;
+        Counted = false;
     }
 
     private void SetInitialRotate()
@@ -59,26 +63,10 @@ public partial class Car : Area2D
         {
             var myPos = GetGlobalPosition();
             var theirPos = car.GetGlobalPosition();
-            if (Direction == CarDirection.Up)
-            {
-                if (Direction != car.Direction && myPos.y - Height < theirPos.y + Width) { return; }
-                if (Direction == car.Direction && myPos.y < theirPos.y) { return; }
-            }
-            if (Direction == CarDirection.Down)
-            {
-                if (Direction != car.Direction && myPos.y + Height > theirPos.y - Width) { return; }
-                if (Direction == car.Direction && myPos.y > theirPos.y) { return; }
-            }
-            if (Direction == CarDirection.Left)
-            {
-                if (Direction != car.Direction && myPos.x - Height < theirPos.x + Width) { return; }
-                if (Direction == car.Direction && myPos.x < theirPos.x) { return; }
-            }
-            if (Direction == CarDirection.Right)
-            {
-                if (Direction != car.Direction && myPos.x + Height > theirPos.x - Width) { return; }
-                if (Direction == car.Direction && myPos.x > theirPos.x) { return; }
-            }
+            if (car.Direction == CarDirection.Up && myPos.y < theirPos.y) { return; }
+            if (car.Direction == CarDirection.Down && myPos.y > theirPos.y) { return; }
+            if (car.Direction == CarDirection.Left && myPos.x < theirPos.x) { return; }
+            if (car.Direction == CarDirection.Right && myPos.x > theirPos.x) { return; }
             overlap.Add(car);
             Stop();
         }
@@ -100,10 +88,7 @@ public partial class Car : Area2D
             return;
         }
         overlap.Remove(area);
-        if (overlap.Count == 0)
-        {
-            Start();
-        }
+        Start();
     }
 
     public override void _Process(float delta)
@@ -146,7 +131,10 @@ public partial class Car : Area2D
 
     public void Start()
     {
-        speed = maxSpeed / acce;
+        if (overlap.Count == 0)
+        {
+            speed = maxSpeed / acce;
+        }
     }
 }
 
