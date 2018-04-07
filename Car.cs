@@ -61,22 +61,22 @@ public partial class Car : Area2D
             var theirPos = car.GetGlobalPosition();
             if (Direction == CarDirection.Up)
             {
-                if (myPos.y - Height < theirPos.y + Width) { return; }
+                if (Direction != car.Direction && myPos.y - Height < theirPos.y + Width) { return; }
                 if (Direction == car.Direction && myPos.y < theirPos.y) { return; }
             }
             if (Direction == CarDirection.Down)
             {
-                if (myPos.y + Height > theirPos.y - Width) { return; }
+                if (Direction != car.Direction && myPos.y + Height > theirPos.y - Width) { return; }
                 if (Direction == car.Direction && myPos.y > theirPos.y) { return; }
             }
             if (Direction == CarDirection.Left)
             {
-                if (myPos.x - Height < theirPos.x + Width) { return; }
+                if (Direction != car.Direction && myPos.x - Height < theirPos.x + Width) { return; }
                 if (Direction == car.Direction && myPos.x < theirPos.x) { return; }
             }
             if (Direction == CarDirection.Right)
             {
-                if (myPos.x + Height > theirPos.x - Width) { return; }
+                if (Direction != car.Direction && myPos.x + Height > theirPos.x - Width) { return; }
                 if (Direction == car.Direction && myPos.x > theirPos.x) { return; }
             }
             overlap.Add(car);
@@ -106,8 +106,13 @@ public partial class Car : Area2D
         }
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
     {
+        // Out of canvas, free
+        if (!GetViewportRect().HasPoint(GetGlobalPosition()))
+        {
+            QueueFree();
+        }
         if (speed > 0 && speed < maxSpeed)
         {
             speed += maxSpeed / acce;
@@ -131,15 +136,6 @@ public partial class Car : Area2D
         if (Direction == CarDirection.Right)
         {
             GlobalPosition += new Vector2(speed * delta, 0);
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        // Out of canvas, free
-        if (!GetViewportRect().HasPoint(GetGlobalPosition()))
-        {
-            QueueFree();
         }
     }
 
