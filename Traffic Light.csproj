@@ -49,10 +49,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreakCrossroad.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarSpawn.cs" />
     <Compile Include="Crossroad.cs" />
     <Compile Include="HUD.cs" />
+    <Compile Include="Level5.cs" />
     <Compile Include="TestScene.cs" />
     <Compile Include="Tutorial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

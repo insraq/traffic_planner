@@ -11,8 +11,9 @@ public class Crossroad : Area2D
     [Export] private Texture horizontal;
     [Export] private Texture vertical;
     [Export] private Texture none;
+    [Node("Image")] private Sprite image;
 
-    [Node("./Image")] private Sprite image;
+    public const string ModeHasChanged = "ModeHasChanged";
 
     private const int OuterIdx = 0;
     private HashSet<Car> outerOverlap = new HashSet<Car>();
@@ -21,11 +22,13 @@ public class Crossroad : Area2D
     public override void _Ready()
     {
         this.WireNodes();
+        AddUserSignal(ModeHasChanged);
         SetMode(Mode.Horizontal);
     }
 
     public void SetMode(Mode mode)
     {
+        EmitSignal(ModeHasChanged, mode, _mode);
         _mode = mode;
         switch (_mode)
         {
@@ -39,7 +42,6 @@ public class Crossroad : Area2D
                 image.SetTexture(none);
                 return;
         }
-
     }
 
     public bool DirectionAllowed(CarDirection direction)
@@ -52,7 +54,7 @@ public class Crossroad : Area2D
         {
             return direction == CarDirection.Left || direction == CarDirection.Right;
         }
-        return true;
+        return false;
     }
 
     public bool CanPass(CarDirection direction)

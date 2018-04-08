@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bg_the_8-bit-mystery.ogg-4a3c3527f77149c0c477db4e78e08916.oggstr"
+
+[deps]
+
+source_file="res://sounds/bg_the_8-bit-mystery.ogg"
+source_md5="b40b37859f66f7c73930bcb01bef5ff1"
+
+dest_files=[ "res://.import/bg_the_8-bit-mystery.ogg-4a3c3527f77149c0c477db4e78e08916.oggstr" ]
+dest_md5="753d6bbd5dbc3c6a29c95e030ff59b19"
+
+[params]
+
+loop=true
+loop_offset=0

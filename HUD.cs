@@ -15,7 +15,8 @@ public class HUD : Node2D
     [Node("CountdownShadow")] private Label countdownShadow;
     [Node("Result")] private Panel result;
     [Node("Result/Title")] private Label title;
-    [Node("Result/Button")] private Label button;
+    [Node("Result/Button")] private LinkButton button;
+    [Node("MenuPanel")] private Panel menuPanel;
 
     private bool startCountdown;
     private Action _onPress;
@@ -83,13 +84,42 @@ public class HUD : Node2D
         result.Visible = true;
     }
 
-    private void OnGUIEvent(InputEvent @event)
+    private void OnResultButtonPressed()
     {
-        if (@event is InputEventMouseButton ev && ev.IsPressed() && _onPress != null)
+        if (_onPress != null)
         {
             _onPress();
-            _onPress = null;
-            result.Visible = false;
+        }
+        _onPress = null;
+        result.Visible = false;
+    }
+
+    private void OnMenuGUIInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton ev && ev.IsPressed())
+        {
+            menuPanel.Visible = true;
         }
     }
+
+    private void OnRestartPressed()
+    {
+        GetTree().ReloadCurrentScene();
+    }
+
+    private void OnBackPressed()
+    {
+        menuPanel.Visible = false;
+    }
+
+    private void OnExitPressed()
+    {
+        GetTree().Quit();
+    }
+
+    private void OnMusicToggled(bool pressed)
+    {
+        AudioServer.SetBusMute(0, !pressed);
+    }
+
 }

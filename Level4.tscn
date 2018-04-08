@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tilemap.tres" type="TileSet" id=1]
 [ext_resource path="res://Crossroad.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://CarFast.tscn" type="PackedScene" id=5]
 [ext_resource path="res://sounds/bg_pixelin_it_around_town.ogg" type="AudioStream" id=6]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Level5.tscn" type="PackedScene" id=8]
 
 [node name="Level4" type="Node" index="0"]
 
@@ -122,7 +123,7 @@ bus = "Master"
 [node name="HUD" parent="." index="15" instance=ExtResource( 7 )]
 
 autoCountdown = 30.0
-nextLevel = null
+nextLevel = ExtResource( 8 )
 debug = false
 
 
