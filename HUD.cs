@@ -80,7 +80,7 @@ public class HUD : Node2D
     private void ShowResult(string titleText, string buttonText, Action onPress)
     {
         title.SetText(titleText);
-        button.SetText(buttonText);
+        button.SetText(buttonText.ToUpper());
         _onPress = onPress;
         result.Visible = true;
     }
