@@ -17,6 +17,7 @@ public class HUD : Node2D
     [Node("Result/Title")] private Label title;
     [Node("Result/Button")] private LinkButton button;
     [Node("MenuPanel")] private Panel menuPanel;
+    [Node("MenuPanel/CreditContent")] private Label creditContent;
 
     private bool startCountdown;
     private Action _onPress;
@@ -122,4 +123,14 @@ public class HUD : Node2D
         AudioServer.SetBusMute(0, !pressed);
     }
 
+    private void OnCreditDown()
+    {
+        creditContent.SetVisible(true);
+    }
+
+
+    private void OnCreditUp()
+    {
+        creditContent.SetVisible(false);
+    }
 }

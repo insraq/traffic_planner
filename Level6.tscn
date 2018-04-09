@@ -9,7 +9,7 @@
 [ext_resource path="res://sounds/bg_the_8-bit-mystery.ogg" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
 
-[node name="Level6" type="Node" index="0"]
+[node name="Level6" type="Node"]
 
 script = ExtResource( 1 )
 
