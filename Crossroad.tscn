@@ -27,10 +27,11 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-_mode = 2
+_mode = 0
 horizontal = ExtResource( 2 )
 vertical = ExtResource( 3 )
 none = ExtResource( 4 )
+touchable = true
 
 [node name="Image" type="Sprite" parent="." index="0"]
 

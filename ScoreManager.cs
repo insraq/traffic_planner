@@ -4,12 +4,15 @@ using System;
 public class ScoreManager : Node
 {
     public bool Mute { get; set; } = false;
+    public const string SaveFilePath = "user://save";
+    public const bool Debug = true;
 
     private const int SoundPlayIntervalMsec = 5000;
     private int lastSoundPlay = 0;
     private int _life = 0;
     private float _countdown = 0f;
     private bool shouldCountdown = false;
+
 
     public int Life
     {
@@ -44,6 +47,24 @@ public class ScoreManager : Node
         AddUserSignal("LifeHasChanged");
         AddUserSignal("LevelFail");
         AddUserSignal("LevelPass");
+        LoadGame();
+    }
+
+    private void LoadGame()
+    {
+        if (Debug)
+        {
+            return;
+        }
+        var file = new File();
+        if (!file.FileExists(SaveFilePath))
+        {
+            return;
+        }
+        file.Open(SaveFilePath, (int)File.ModeFlags.Read);
+        var lastScene = file.GetAsText();
+        file.Close();
+        GetTree().ChangeScene(lastScene);
     }
 
     public override void _Process(float delta)

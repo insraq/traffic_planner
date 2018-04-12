@@ -7,10 +7,11 @@ public class Crossroad : Area2D
 {
     public enum Mode { Horizontal, Vertical, None };
 
-    [Export] private Mode _mode = Mode.None;
+    [Export] private Mode _mode = Mode.Horizontal;
     [Export] private Texture horizontal;
     [Export] private Texture vertical;
     [Export] private Texture none;
+    [Export] private bool touchable = true;
     [Node("Image")] private Sprite image;
 
     public const string ModeHasChanged = "ModeHasChanged";
@@ -23,7 +24,12 @@ public class Crossroad : Area2D
     {
         this.WireNodes();
         AddUserSignal(ModeHasChanged);
-        SetMode(Mode.Horizontal);
+        SetMode(_mode);
+    }
+
+    public void SetTouchable(bool isTouchable)
+    {
+        touchable = isTouchable;
     }
 
     public void SetMode(Mode mode)
@@ -40,6 +46,22 @@ public class Crossroad : Area2D
                 return;
             default:
                 image.SetTexture(none);
+                return;
+        }
+    }
+
+    public void ToggleMode()
+    {
+        switch (_mode)
+        {
+            case Mode.Horizontal:
+                SetMode(Mode.Vertical);
+                return;
+            case Mode.Vertical:
+                SetMode(Mode.Horizontal);
+                return;
+            default:
+                SetMode(Mode.None);
                 return;
         }
     }
@@ -82,7 +104,7 @@ public class Crossroad : Area2D
 
     public override void _InputEvent(Godot.Object viewport, InputEvent @event, int shapeIdx)
     {
-        if (@event is InputEventMouseButton ev && ev.IsPressed() && shapeIdx == OuterIdx)
+        if (@event is InputEventMouseButton ev && ev.IsPressed() && shapeIdx == OuterIdx && touchable)
         {
             if (_mode == Mode.Horizontal)
             {

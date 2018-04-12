@@ -7,7 +7,7 @@ public class HUD : Node2D
     [Export] private int maxLife = 10;
     [Export] private float autoCountdown = 0;
     [Export] private PackedScene nextLevel;
-    [Export] private bool debug;
+    [Export] private bool debug = ScoreManager.Debug;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
     [Node("Score")] private Label score;
     [Node("ScoreShadow")] private Label scoreShadow;
@@ -18,6 +18,7 @@ public class HUD : Node2D
     [Node("Result/Button")] private LinkButton button;
     [Node("MenuPanel")] private Panel menuPanel;
     [Node("MenuPanel/CreditContent")] private Label creditContent;
+    [Node("MenuPanel/DebugOnly")] private Node2D debugOnly;
 
     private bool startCountdown;
     private Action _onPress;
@@ -34,6 +35,19 @@ public class HUD : Node2D
         {
             scoreManager.StartCountdown(autoCountdown);
         }
+        SaveGame();
+        if (debug)
+        {
+            debugOnly.Visible = true;
+        }
+    }
+
+    private void SaveGame()
+    {
+        var file = new File();
+        file.Open(ScoreManager.SaveFilePath, (int)File.ModeFlags.Write);
+        file.StoreString(GetTree().GetCurrentScene().GetFilename());
+        file.Close();
     }
 
     public override void _Process(float delta)
@@ -128,9 +142,15 @@ public class HUD : Node2D
         creditContent.SetVisible(true);
     }
 
-
     private void OnCreditUp()
     {
         creditContent.SetVisible(false);
     }
+
+    private void OnClearSavePressed()
+    {
+        var dir = new Directory();
+        dir.Remove(ScoreManager.SaveFilePath);
+    }
+
 }

@@ -55,6 +55,8 @@
     <Compile Include="Crossroad.cs" />
     <Compile Include="HUD.cs" />
     <Compile Include="Level5.cs" />
+    <Compile Include="Level6.cs" />
+    <Compile Include="Level7.cs" />
     <Compile Include="TestScene.cs" />
     <Compile Include="Tutorial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

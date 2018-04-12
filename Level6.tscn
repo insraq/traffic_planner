@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://BreakCrossroad.cs" type="Script" id=1]
+[ext_resource path="res://Level6.cs" type="Script" id=1]
 [ext_resource path="res://tilemap.tres" type="TileSet" id=2]
 [ext_resource path="res://Crossroad.tscn" type="PackedScene" id=3]
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=4]
@@ -41,36 +41,42 @@ __meta__ = {
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 112, 80 )
+touchable = true
 
 [node name="Crossroad2" parent="." index="2" groups=[
 "Crossroads",
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 112, 208 )
+touchable = true
 
 [node name="Crossroad3" parent="." index="3" groups=[
 "Crossroads",
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 400, 208 )
+touchable = true
 
 [node name="Crossroad4" parent="." index="4" groups=[
 "Crossroads",
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 400, 80 )
+touchable = true
 
 [node name="Crossroad5" parent="." index="5" groups=[
 "Crossroads",
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 400, 144 )
+touchable = true
 
 [node name="Crossroad6" parent="." index="6" groups=[
 "Crossroads",
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 112, 144 )
+touchable = true
 
 [node name="Cars" type="Node" parent="." index="7"]
 
