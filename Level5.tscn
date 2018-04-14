@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Level5.cs" type="Script" id=1]
 [ext_resource path="res://tilemap.tres" type="TileSet" id=2]
@@ -6,17 +6,18 @@
 [ext_resource path="res://CarSpawn.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Bus.tscn" type="PackedScene" id=5]
 [ext_resource path="res://CarFast.tscn" type="PackedScene" id=6]
-[ext_resource path="res://sounds/bg_the_8-bit-mystery.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sounds/bg_music_happy.ogg" type="AudioStream" id=7]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=8]
-[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://images/hand.png" type="Texture" id=10]
+[ext_resource path="res://Level6.tscn" type="PackedScene" id=9]
+[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://images/hand.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 
 size = 8
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 9 )
+font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Level5" type="Node"]
@@ -144,6 +145,8 @@ bus = "Master"
 [node name="HUD" parent="." index="15" instance=ExtResource( 8 )]
 
 autoCountdown = 30.0
+nextLevel = ExtResource( 9 )
+debug = false
 
 [node name="CR4IsBroken" type="Label" parent="." index="16"]
 
@@ -175,7 +178,7 @@ _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 visible = false
 position = Vector2( 400, 96 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 

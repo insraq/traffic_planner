@@ -72,7 +72,7 @@ public class HUD : Node2D
     private void GameOver()
     {
         if (debug) return;
-        ShowResult("Game Over", "Touch to Retry", () =>
+        ShowResult("F) Game Over", "Touch to Retry", () =>
         {
             GetTree().SetPause(false);
             GetTree().ReloadCurrentScene();
@@ -83,12 +83,30 @@ public class HUD : Node2D
     private void NextLevel()
     {
         if (debug) return;
-        ShowResult("Mission Accomplished", "Next Level", () =>
+        ShowResult(GetSuccessfulTitle(), "Next Level", () =>
         {
             GetTree().SetPause(false);
             GetTree().ChangeSceneTo(nextLevel);
         });
         GetTree().SetPause(true);
+    }
+
+    private string GetSuccessfulTitle()
+    {
+        var l = scoreManager.Life;
+        if (l >= 10)
+        {
+            return "A) Perfect";
+        }
+        else if (l >= 7)
+        {
+            return "B) Well done";
+        }
+        else if (l >= 4)
+        {
+            return "C) Good effort";
+        }
+        return "D) Barely pass";
     }
 
     private void ShowResult(string titleText, string buttonText, Action onPress)

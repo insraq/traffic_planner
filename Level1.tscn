@@ -167,5 +167,6 @@ bus = "Master"
 [node name="HUD" parent="." index="9" instance=ExtResource( 8 )]
 
 nextLevel = ExtResource( 9 )
+debug = true
 
 

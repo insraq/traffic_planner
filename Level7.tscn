@@ -57,7 +57,6 @@ position = Vector2( 112, 80 )
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 112, 208 )
-_mode = 1
 
 [node name="Crossroad3" parent="." index="3" groups=[
 "Crossroads",
@@ -70,7 +69,6 @@ position = Vector2( 400, 208 )
 ] instance=ExtResource( 3 )]
 
 position = Vector2( 400, 80 )
-_mode = 1
 
 [node name="Cars" type="Node" parent="." index="5"]
 
@@ -78,14 +76,14 @@ _mode = 1
 
 position = Vector2( 408, 283 )
 _sections_unfolded = [ "Transform", "Visibility" ]
-SpawnChance = 0.3
+SpawnChance = 0.2
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn9" parent="." index="7" instance=ExtResource( 4 )]
 
 position = Vector2( 120, 283 )
 _sections_unfolded = [ "Transform", "Visibility" ]
-SpawnChance = 0.3
+SpawnChance = 0.2
 spawnTargetNode = NodePath("../Cars")
 
 [node name="CarSpawn2" parent="." index="8" instance=ExtResource( 4 )]
@@ -123,7 +121,7 @@ spawnTargetNode = NodePath("../Cars")
 
 position = Vector2( 104, 5 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-SpawnChance = 0.25
+SpawnChance = 0.2
 direction = 1
 spawnTargetNode = NodePath("../Cars")
 
@@ -131,7 +129,7 @@ spawnTargetNode = NodePath("../Cars")
 
 position = Vector2( 392, 5 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-SpawnChance = 0.25
+SpawnChance = 0.2
 direction = 1
 spawnTargetNode = NodePath("../Cars")
 

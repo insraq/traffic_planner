@@ -9,7 +9,7 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Level5.tscn" type="PackedScene" id=8]
 
-[node name="Level4" type="Node" index="0"]
+[node name="Level4" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
