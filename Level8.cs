@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Level7 : Node
+public class Level8 : Node
 {
     [Node("Instructions")] private Node2D instructions;
 

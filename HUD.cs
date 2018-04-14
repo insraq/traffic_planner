@@ -1,12 +1,12 @@
 using Godot;
 using System;
+using System.Text.RegularExpressions;
 
 public class HUD : Node2D
 {
 
     [Export] private int maxLife = 10;
     [Export] private float autoCountdown = 0;
-    [Export] private PackedScene nextLevel;
     [Export] private bool debug = ScoreManager.Debug;
     [Node("/root/ScoreManager")] private ScoreManager scoreManager;
     [Node("Score")] private Label score;
@@ -86,9 +86,17 @@ public class HUD : Node2D
         ShowResult(GetSuccessfulTitle(), "Next Level", () =>
         {
             GetTree().SetPause(false);
-            GetTree().ChangeSceneTo(nextLevel);
+            GetTree().ChangeScene(GetNextScene());
         });
         GetTree().SetPause(true);
+    }
+
+    private string GetNextScene()
+    {
+        var s = GetTree().GetCurrentScene().GetFilename();
+        Match m = Regex.Match(s, @"Level(\d+)");
+        var n = int.Parse(m.Groups[1].Value) + 1;
+        return $"res://Level{n}.tscn";
     }
 
     private string GetSuccessfulTitle()
