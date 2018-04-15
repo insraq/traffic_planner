@@ -19,7 +19,7 @@ use_filter = false
 font_data = ExtResource( 10 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Level8" type="Node" index="0"]
+[node name="Level8" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -78,7 +78,7 @@ _mode = 1
 
 position = Vector2( 376, 283 )
 _sections_unfolded = [ "Transform", "Visibility" ]
-SpawnChance = 0.2
+SpawnChance = 0.3
 carScene2 = ExtResource( 5 )
 spawnTargetNode = NodePath("../Cars")
 
@@ -93,7 +93,7 @@ spawnTargetNode = NodePath("../Cars")
 [node name="CarSpawn2" parent="." index="8" instance=ExtResource( 4 )]
 
 position = Vector2( 5, 87.803 )
-SpawnChance = 0.2
+SpawnChance = 0.25
 direction = 3
 carScene2 = ExtResource( 6 )
 spawnTargetNode = NodePath("../Cars")
@@ -117,7 +117,7 @@ spawnTargetNode = NodePath("../Cars")
 [node name="CarSpawn7" parent="." index="11" instance=ExtResource( 4 )]
 
 position = Vector2( 507, 200 )
-SpawnChance = 0.2
+SpawnChance = 0.25
 direction = 2
 carScene1 = ExtResource( 6 )
 carScene2 = ExtResource( 5 )
@@ -127,7 +127,7 @@ spawnTargetNode = NodePath("../Cars")
 
 position = Vector2( 232, 5 )
 _sections_unfolded = [ "Audio Bus", "Transform", "Visibility", "Z Index" ]
-SpawnChance = 0.2
+SpawnChance = 0.3
 direction = 1
 carScene2 = ExtResource( 5 )
 spawnTargetNode = NodePath("../Cars")
